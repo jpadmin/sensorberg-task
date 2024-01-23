@@ -1,0 +1,8 @@
+- hosts: localhost
+  connection: local
+  become: true
+  roles:
+    - base
+    - mosquitto_build
+    - mosquitto_configure
+    - mosquitto_runtime

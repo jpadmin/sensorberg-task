@@ -1,0 +1,15 @@
+- name: Run dnf update
+  ansible.builtin.dnf:
+    name=*
+    state=latest
+
+- name: Install the latest pip and firewall using dnf
+  ansible.builtin.dnf:
+    name: 
+      - python3-pip
+    state: latest
+
+- name: Ensure firewall is running
+  ansible.builtin.service:
+    name: firewalld
+    state: started

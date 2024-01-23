@@ -1,0 +1,9 @@
+- name: Enable epel Repo
+  ansible.builtin.dnf:
+    name : epel-release
+    state : latest
+
+- name: Install Mosquitto Server
+  ansible.builtin.dnf:
+    name : mosquitto
+    state : latest

@@ -1,0 +1,3 @@
+- fail:
+    msg: >
+      Playbook does not support installation in {{ ansible_os_family }}

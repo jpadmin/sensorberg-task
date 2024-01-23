@@ -1,0 +1,25 @@
+- name: Create Mosquitto password file
+  ansible.builtin.file:
+    path: /etc/mosquitto/passwd
+    state: touch
+    owner: mosquitto
+    group: mosquitto
+    mode: '0600'
+
+- name: Configuring Mosquitto password for authentication
+  ansible.builtin.command: mosquitto_passwd -b /etc/mosquitto/passwd {{ mosquitto_username }} {{ mosquitto_password }}
+
+- name: Copy certificates for TLS configuration
+  ansible.builtin.copy:
+    src: certs
+    dest: /etc/mosquitto/
+    owner: mosquitto
+    group: mosquitto
+
+- name: Fix permissions for certificate keys
+  ansible.builtin.shell: find /etc/mosquitto/certs/ -type f | grep "key" | xargs chmod 600
+
+- name: Create Mosquito configuration file from a template
+  ansible.builtin.template:
+    src: mosquitto_config.j2
+    dest: /etc/mosquitto/mosquitto.conf
