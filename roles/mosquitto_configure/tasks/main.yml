@@ -11,13 +11,13 @@
 
 - name: Copy certificates for TLS configuration
   ansible.builtin.copy:
-    src: certs
+    src: newcerts
     dest: /etc/mosquitto/
     owner: mosquitto
     group: mosquitto
 
 - name: Fix permissions for certificate keys
-  ansible.builtin.shell: find /etc/mosquitto/certs/ -type f | grep "key" | xargs chmod 600
+  ansible.builtin.shell: find /etc/mosquitto/newcerts/ -type f | grep "key" | xargs chmod 600
 
 - name: Create Mosquito configuration file from a template
   ansible.builtin.template:

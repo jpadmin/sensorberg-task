@@ -1,7 +1,12 @@
-- name: Enable Firewall ports
+- name: Start Mosquitto server
+  ansible.builtin.service:
+    name: mosquitto
+    state: stopped
+
+- name: Enable Firewall ports for SSH
   ansible.builtin.command: firewall-cmd --permanent --add-port=22/tcp
 
-- name: Enable Firewall ports
+- name: Enable Firewall ports for Mosquitto SSL port
   ansible.builtin.command: firewall-cmd --permanent --add-port={{ ssl_port }}/tcp
 
 - name: Reload Firewall
