@@ -1,4 +1,7 @@
 - name: Enable Firewall ports
+  ansible.builtin.command: firewall-cmd --permanent --add-port=22/tcp
+
+- name: Enable Firewall ports
   ansible.builtin.command: firewall-cmd --permanent --add-port={{ ssl_port }}/tcp
 
 - name: Reload Firewall
