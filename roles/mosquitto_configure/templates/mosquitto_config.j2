@@ -1,5 +1,6 @@
 allow_anonymous false
 password_file /etc/mosquitto/passwd
+log_dest file /var/log/mosquitto/mosquitto.log
 
 listener {{ non_ssl_port }} 127.0.0.1
 
