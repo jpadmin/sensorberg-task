@@ -4,5 +4,6 @@
   roles:
     - base
     - mosquitto_build
+    - mosquitto_exporter_build
     - mosquitto_configure
     - mosquitto_runtime
