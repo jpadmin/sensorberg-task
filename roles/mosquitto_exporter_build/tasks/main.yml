@@ -1,0 +1,40 @@
+- name: Create exporter group
+  ansible.builtin.group:
+    name: exporter
+    state: present
+
+- name: Add exporter user
+  user:
+    name: exporter
+    state: present
+    comment: "Exporter User"
+    createhome: no
+    home: /opt/exporter
+    shell: /bin/false
+
+- name: Create solr directory
+  file:
+    path: /opt/exporter
+    state: directory
+    owner: exporter
+    group: exporter
+
+- name: Clone mosquitto exporter code from SAP 
+  ansible.builtin.git:
+    repo: 'https://github.com/sapcc/mosquitto-exporter.git'
+    dest: /tmp/mosquitto-exporter
+    clone: yes
+    update: no
+
+- name: Build mosquitto-exporter from source
+  ansible.builtin.shell: make build
+  args:
+    chdir: /tmp/mosquitto-exporter
+
+- name: Copy mosquitto-exporter executable to /usr/bin/
+  ansible.builtin.copy:
+    src: /tmp/mosquitto-exporter/bin/mosquitto_exporter
+    dest: /opt/exporter
+    owner: exporter
+    group: exporter
+    mode: '0755'
