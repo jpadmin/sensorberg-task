@@ -24,7 +24,7 @@
     src: mosquitto_config.j2
     dest: /etc/mosquitto/mosquitto.conf
 
-- name: Create Mosquito Exporter configuration file from a template
+- name: Create Mosquito Exporter service file from a template
   ansible.builtin.template:
     src: mosquitto_exporter_service.j2
     dest: /etc/systemd/system/exporter.service
@@ -39,5 +39,5 @@
 - name: Enable Firewall ports for Mosquitto SSL port
   ansible.builtin.command: firewall-cmd --permanent --add-port={{ ssl_port }}/tcp
 
-- name: Enable Firewall ports for Mosquitto SSL port
+- name: Enable Firewall ports for Exporter server port
   ansible.builtin.command: firewall-cmd --permanent --add-port={{ exporter_port }}/tcp

@@ -12,7 +12,7 @@
     home: /opt/exporter
     shell: /bin/false
 
-- name: Create solr directory
+- name: Create /opt/exporter directory
   file:
     path: /opt/exporter
     state: directory
@@ -31,7 +31,7 @@
   args:
     chdir: /tmp/mosquitto-exporter
 
-- name: Copy mosquitto-exporter executable to /usr/bin/
+- name: Copy mosquitto-exporter executable to /opt/explorer/
   ansible.builtin.copy:
     src: /tmp/mosquitto-exporter/bin/mosquitto_exporter
     dest: /opt/exporter

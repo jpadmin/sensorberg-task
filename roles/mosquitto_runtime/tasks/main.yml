@@ -1,11 +1,11 @@
-- name: Stop Mosquitto server
-  ansible.builtin.service:
-    name: mosquitto
-    state: stopped
-
 - name: Stop Exporter server
   ansible.builtin.service:
     name: exporter
+    state: stopped
+
+- name: Stop Mosquitto server
+  ansible.builtin.service:
+    name: mosquitto
     state: stopped
 
 - name: Reload Firewall
