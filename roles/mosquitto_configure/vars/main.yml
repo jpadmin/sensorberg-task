@@ -2,3 +2,4 @@ mosquitto_username : johnpaulkj
 mosquitto_password : sensorberg2024
 non_ssl_port : 1883
 ssl_port : 8883
+exporter_port: 9234
