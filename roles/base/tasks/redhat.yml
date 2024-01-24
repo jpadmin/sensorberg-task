@@ -8,6 +8,8 @@
     name:
       - firewalld
       - python3-pip
+      - go
+      - git
     state: latest
 
 - name: Ensure firewall is running
