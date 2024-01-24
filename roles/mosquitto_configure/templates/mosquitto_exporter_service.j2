@@ -2,7 +2,7 @@
 Description=Mosquitto Exporter Service
 
 [Service]
-Type=forking
+Type=simple
 ExecStart=/opt/exporter/mosquitto_exporter --endpoint tcp://127.0.0.1:1883 -u {{ mosquitto_username }} -p {{ mosquitto_password }}
 ExecStop=pkill -u exporter
 User=exporter

@@ -3,10 +3,20 @@
     name: mosquitto
     state: stopped
 
+- name: Stop Exporter server
+  ansible.builtin.service:
+    name: exporter
+    state: stopped
+
 - name: Reload Firewall
   ansible.builtin.command:  firewall-cmd --reload
 
 - name: Start Mosquitto server
   ansible.builtin.service:
     name: mosquitto
+    state: started
+
+- name: Start Exporter server
+  ansible.builtin.service:
+    name: exporter
     state: started
